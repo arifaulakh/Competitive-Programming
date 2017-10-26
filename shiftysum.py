@@ -7,4 +7,4 @@ for item in range(1, k+1):
     x.append(y)
 sumlist = sum(x)
 print(sumlist)
-    
+

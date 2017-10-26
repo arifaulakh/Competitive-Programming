@@ -13,8 +13,7 @@ for j in range(0, len(a)):
     elif d[j] > a[j]:
         an = an - d[j]
 print(an)
-print(dav)
-    
+print(dav
 
 
 
