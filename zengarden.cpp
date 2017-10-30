@@ -2,11 +2,22 @@
 
 using namespace std;
 
-int main(){
-    int n;
-    scanf("%d", &n);
-    int m;
-    scanf("%d", &m);
-    for (int i = 1; )
+int x[100000];
+
+int main() {
+  int sum = 0;
+  int N; scanf("%d", &N);
+  for (int i = 1; i<= N; i++){
+    scanf("%d", &x[i]);
+    sum +=x[i];
+  }
+  int M; scanf("%d", &M);
+  while(M--){
+    int a, d; scanf("%d%d", &a, &d);
+    sum -= min(x[a], min(x[a+1], d));
     
+    
+  }
+  printf("%d\n", sum);
+  return 0;
 }
