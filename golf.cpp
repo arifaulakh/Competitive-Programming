@@ -1,18 +1,22 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <cmath>
 using namespace std;
 
-int MC(int amount, int d[], int size, int C[])
+int MC(int amount, int d[])
 {  
-    C[0] = 0;
-    for(int j = 1; j <= amount; j++) {
-	C[j] = INT8_MAX;
-	for(int i = 0; i < size; i++) {
-	    if(j >= d[i] && 1 + C[j-d[i]] < C[j] ) {
-		C[j] = 1 + C[j-d[i]];
-	    }
+    int function[amount+1];
+    int min, t;
+    function[0] = 0;
+    for (int i =1; i<=distance; i++) min = 9999;
+        for (int j = 0; j < distance; i++){
+            t = i - dp[j];
+            if (t >= 0 && function[t]>=0 && function[t] < min) min = function[t];
         }
-    }     
-    return C[amount];
+        if (min < 9999) function[i] = min+1;
+        else function[i] = -1;
+    }
+    return function[amount];
 }
 
 int main()
@@ -23,13 +27,12 @@ int main()
     for (int i = 0; i < clubs; i++){
       cin >> d[i];
     }
-    int size = sizeof(d)/sizeof(d[0]);
-    int *C = new int[amount+1];
-    int ans = MC(amount, d, size, C);
-    if (ans != 2147483647 && ans <= amount){
+    distance = sizeof(d)/sizeof(d[0]);
+    int ans = MC(amount, d[]);
+    if (ans != INT8_MAX && ans <= amount){
       cout << "Roberta wins in " << ans << " strokes. " << endl;
     }
-    if (ans == 2147483647 || ans > amount){
+    if (ans == INT8_MAX || ans > amount){
       cout << "Roberta acknowledges defeat." << endl;
     }
 

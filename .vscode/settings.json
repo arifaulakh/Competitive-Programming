@@ -4,6 +4,9 @@
         "string": "cpp",
         "iostream": "cpp",
         "ratio": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "iterator": "cpp"
     }
 }
