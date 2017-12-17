@@ -7,6 +7,8 @@
         "ostream": "cpp",
         "chrono": "cpp",
         "limits": "cpp",
-        "iterator": "cpp"
+        "iterator": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp"
     }
 }
