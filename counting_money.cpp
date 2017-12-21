@@ -4,11 +4,11 @@
 #include <algorithm>
 using namespace std;
 
+int x, y;
 int main(){
     int N; cin >> N;
     for (int i = 1; i <= N;i++){
-        string x; cin >> x;
-        string y; cin >> y;
+        cin >> x >> y;
         if (x == "A"){
             double total = 0;
             char letter = "1";
@@ -20,7 +20,10 @@ int main(){
                 }
             }
             cout << total << endl;
-
+        }
+        if (x == "B"){
+            string total = "";
+            for (int )
         }
     }
     return 0;
