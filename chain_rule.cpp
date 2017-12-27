@@ -1,5 +1,8 @@
-//Dijkstra's Algorithm
-#include <bits/stdc++.h>
+#include <iostream>
+#include<vector>
+#include<cmath>
+#include<functional>
+#include<priority_queue>
 const int MAXN = 1005, INF = 1e9;
 using namespace std;
 typedef pair<int, int> ii;
