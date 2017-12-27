@@ -3,24 +3,21 @@
 #include<queue>
 using namespace std;
 
-vector<int> v[10];
-int level[10];
-bool vis[10];
+pair<int, int> ii;
+vector<int> vi;
+int main(){
+	vi d(V, INF); d[s] = 0;
+	queue<int> q; q.push(s);
 
-void bfs (int s){
-	queue <int> q;
-	q.push(s);
-	level[s] = 0;
-	vis[s] = true;
 	while(!q.empty()){
-		int p = q.front()
-		q.pop();
-		for (int i = 0; i<v[ p ].size() ; i++){
-			if (vis[v[p][i]] == false){
-				level[v[p][i]] = level[p]+1;
-				 q.push(v[p][i]);
-				 vis[v[p][i]] = true;
+		int u = q.front(); q.pop();
+		for (int j = 0; j < (int) AdjList[u].size();j++){
+			ii v = AdjList[u][j];
+			if(d[v.first]==INF){
+				d[v.first] = d[u] + 1;
+				q.push(v.first);
 			}
 		}
 	}
+	return 0;
 }
