@@ -3,23 +3,28 @@
 using namespace std;
 typedef pair<int, int> ii;
 typedef vector<ii> vii;
-typedef vector<int> vi;
-vi dfs_num;
-vii AdjList[10005];
-int C, M, n, k, visited = 1, unvisited = -1;
+vector<int> edges[9999];
+bool visited[9999];
+
+int C, M, n, k;
 void dfs(int u) {
-	dfs_num[u] = visited;
-	for (int i = 0; i < (int)AdjList[u].size(); i++){
-		ii v = AdjList[u][i];
-		if (dfs_num[v.first] == unvisited){
-			dfs(v.first)
+	visited[u] = true;
+	for (int i = 0; i<edges[u].size();i++){
+		int v = edges[u][i];
+		if(!visited[edges[u][i]]){
+			dfs(edges[u][i]);
 		}
 	}
 }
 int main(){
-	scanf("%d%d", &C, &M);
-	for (int i = 0; i < C; i++){
-		scanf("%d%d", &n, &k);
+	int n; scanf("%d", &n);
+	for (int i = 0; i<n; i++){
+		int x, y; scanf("%d%d", &x, &y);
+		edges[x].push_back(y);
+	}
+	while(1){
+		int a, b; scanf("%d%d", &a, &b);
+
 	}
 	return 0;
 }
