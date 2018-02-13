@@ -1,20 +1,13 @@
 #include<iostream>
 #include <vector>
 using namespace std;
-typedef pair<int, int> ii;
-typedef vector<ii> vii;
 vector<int> edges[9999];
 bool visited[9999];
 
 int C, M, n, k;
-void dfs(int u) {
-	visited[u] = true;
-	for (int i = 0; i<edges[u].size();i++){
-		int v = edges[u][i];
-		if(!visited[edges[u][i]]){
-			dfs(edges[u][i]);
-		}
-	}
+void dfs(int start, int end) {
+	int c = edges[start], count = 0;
+	
 }
 int main(){
 	int n; scanf("%d", &n);
@@ -24,6 +17,8 @@ int main(){
 	}
 	while(1){
 		int a, b; scanf("%d%d", &a, &b);
+		if (a==0 &&b==0) break;
+		int result = dfs(a, b);
 
 	}
 	return 0;
