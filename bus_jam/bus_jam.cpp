@@ -1,19 +1,26 @@
-#include<iostream>
-#include<algorithm>
+#include <iostream>
+#include<cmath>
 using namespace std;
-
-int N, M, H;
+const int MAXN = 1001;
+int N, H, M, buses[MAXN], diff[MAXN];
 
 int main(){
-	int B[N];
-	scanf("%d%d%d", &N, &M, &H);
-	for (int i = 0; i<N; i++) scanf("%d", &B[i]);
-	sort(B, B+N, greater<int>());
-	int count = 0;
-	for (int i = 0; i < N; i++){
-		if (B[i]-B[i+1] > H){
-			count+=
-		}
-	}
-	return 0;
+  cin >> N >> M >> H;
+  for (int i = N; i>=1; i--){
+    cin >> buses[i];
+  }
+  for (int i = 1; i<N; i++){
+    diff[i] = buses[i]-buses[i+1];
+  }
+  int count = 0;
+  for (int i = 1; i<N; i++){
+    if (diff[i]>H){
+      int add = diff[i]-H;
+      int breaks = ceil((double)add/(double)M);
+      count+=breaks;
+      diff[i+1]+=breaks*M;
+    }
+  }
+  cout << count;
+  return 0;
 }
