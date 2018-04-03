@@ -1,1 +1,1 @@
-# DMOJ
+# Competitive-Programming
