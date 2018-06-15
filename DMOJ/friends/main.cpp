@@ -1,24 +1,38 @@
 #include<iostream>
-#include <vector>
+#include<cstring>
 using namespace std;
-vector<int> edges[9999];
-bool visited[9999];
-
-int C, M, n, k;
-void dfs(int start, int end) {
-	int c = edges[start], count = 0;
-	
-}
+const int MAXN = 10001;
+int friends[MAXN], Distance[MAXN], x, y, n;
 int main(){
-	int n; scanf("%d", &n);
+	freopen("data.txt", "r", stdin);
+	cin >> n;
 	for (int i = 0; i<n; i++){
-		int x, y; scanf("%d%d", &x, &y);
-		edges[x].push_back(y);
+		int a, b; cin >> a >> b;
+		friends[a] = b;
 	}
 	while(1){
-		int a, b; scanf("%d%d", &a, &b);
-		if (a==0 &&b==0) break;
-		int result = dfs(a, b);
+		cin >> x >> y;
+		if (x==0) break;
+		bool check = true;
+		memset(Distance, 0, sizeof Distance);
+		int current = friends[x];
+		Distance[friends[x]] = 1;
+		while(true){
+			if (current==x) break;
+			if (Distance[friends[current]]>0){
+				check = false;
+				break;
+			}
+			Distance[friends[current]] = Distance[current]+1;
+			current = friends[current];
+		}
+		if (Distance[y]==0) check = false;
+		if (check){
+			cout << "Yes " << Distance[y]-1 << endl;
+		}
+		else{
+			cout << "No" << endl;
+		}
 
 	}
 	return 0;
