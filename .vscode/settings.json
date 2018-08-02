@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "algorithm": "cpp",
+        "string": "cpp",
+        "iostream": "cpp",
+        "ratio": "cpp",
+        "ostream": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "iterator": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp"
+    }
+}
