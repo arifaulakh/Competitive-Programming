@@ -1,23 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int MAXN = 1e9+1;
-int N,cnt = 0;
+typedef long long ll;
+ll N, cnt = 0;
 
 int main(){
 	freopen("data.txt","r", stdin);
 	cin >> N;
-	int t[N+1];
-	for (int i = 1; i<=N; i++){
-	    t[i] = (i*(i+1))/2;
-	}
-	for (int i = 1; i<=N; i++){
-		if (N<=t[i]){
-			for (int j = t[i-1]+1; j<=t[i]; j++){
-				cnt+=j;
-			}
-			break;
-		}
-	}
-	cout << cnt;
+    int row = round(sqrt(2*N));
+	ll TR = ((row)*(row+1))/2;
+	ll TL = TR-(row-1);
+	ll sum = (double)(TR+TL)*((double)row/(double)2);
+	cout << sum;
 	return 0;
 }
