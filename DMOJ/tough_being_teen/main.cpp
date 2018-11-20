@@ -2,24 +2,36 @@
 using namespace std;
 const int MAXN = 20;
 vector<int> adj[MAXN];
-bool visited[MAXN], prereq[MAXN];
+int dist[MAXN], MIN = 8;
+vector<int> nodes, path;
+bool visited[MAXN];
+queue<int> q;
 
-// void dfs(int x){
-// 	visited[x] = true;
-// 	for (auto u : adj[x]){
-// 		if (visited[u])return;
-// 		visited[u] = true;
-// 		dfs(u);
-// 	}
-// }
+void BFS(int x){
+	memset(visited,false,sizeof visited);
+	memset(dist,0,sizeof dist);
+	visited[x] = true;
+	dist[x] = 0;
+	q.push(x);
+	while (!q.empty())
+	{
+		int s = q.front();
+		nodes.push_back(s);
+		q.pop();
+		for (auto u : adj[s])
+		{
+			if (visited[u])
+				continue;
+			visited[u] = true;
+			dist[u] = dist[s] + 1;
+			q.push(u);
+		}
+	}
+}
 void init(){
 	adj[1] = {4,7};
 	adj[2] = {1};
 	adj[3] = {4,5};
-	prereq[1] = true;
-	prereq[4] = true;
-	prereq[5] = true;
-	prereq[7] = true;
 }
 int main(){
 	freopen("data.txt","r",stdin);
@@ -28,11 +40,12 @@ int main(){
 		int a, b; cin >> a >> b;
 		if (a==0) break;
 		adj[a].push_back(b);
-		prereq[b] = true;
 	}
-	
 	for (int i = 1; i<=7; i++){
-		if (prereq)
+		BFS(i);
+		for (auto u : nodes) cout << u << " ";
+		cout << endl;
+		nodes.clear();
 	}
 	return 0;
 }

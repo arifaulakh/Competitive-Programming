@@ -1,7 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int MAXN = 9;
-int adj[MAXN][MAXN], a, b, dist[MAXN];
+vector<int> adj[MAXN*MAXN];
+int board[MAXN][MAXN],dist[MAXN]; 
 bool visited[MAXN];
 queue<int> q;
 
@@ -19,8 +20,10 @@ void bfs(int x){
 }
 int main(){
 	freopen("data.txt","r",stdin);
-	for (int i = 1; i<=2; i++){
-		cin >> a >> b;
-		adj[a][b] = 1;
-	}
+	int start_x, start_y; cin >> start_x >> start_y;
+	board[start_x][start_y] = 1;
+	int final_x, final_y; cin >> final_x >> final_y;
+	board[final_x][final_y] = 1;
+	
+	return 0;
 }

@@ -1,40 +1,42 @@
-#include<iostream>
-#include<cstring>
+#include<bits/stdc++.h>
 using namespace std;
-const int MAXN = 10001;
-int friends[MAXN], Distance[MAXN], x, y, n;
-int main(){
-	freopen("data.txt", "r", stdin);
-	cin >> n;
-	for (int i = 0; i<n; i++){
-		int a, b; cin >> a >> b;
-		friends[a] = b;
+const int MAXN = 1e4+1;
+int N, dist[MAXN],x, y;
+bool visited[MAXN];
+vector<int> adj[MAXN];
+queue<int> q;
+void BFS(int x){
+  memset(visited,false,sizeof visited); 
+  memset(dist,0,sizeof dist);
+	visited[x] = true;
+	dist[x] = 0;
+	q.push(x);
+	while(!q.empty()){
+		int s = q.front(); q.pop();
+		for (auto u : adj[s]){
+			if (visited[u]) continue;
+			visited[u] = true;
+			dist[u] = dist[s]+1;
+			q.push(u);
+		}
 	}
-	while(1){
-		cin >> x >> y;
-		if (x==0) break;
-		bool check = true;
-		memset(Distance, 0, sizeof Distance);
-		int current = friends[x];
-		Distance[friends[x]] = 1;
-		while(true){
-			if (current==x) break;
-			if (Distance[friends[current]]>0){
-				check = false;
-				break;
-			}
-			Distance[friends[current]] = Distance[current]+1;
-			current = friends[current];
-		}
-		if (Distance[y]==0) check = false;
-		if (check){
-			cout << "Yes " << Distance[y]-1 << endl;
-		}
-		else{
-			cout << "No" << endl;
-		}
-
-	}
-	return 0;
 }
 
+int main(){
+  freopn("data.txt","r",stdin);
+  cin >> N;
+  for (int i = 1; i<=N; i++){
+    cin >> x >> y;
+    adj[x].push_back(y);
+  }
+  while(1){
+    cin >> x >> y;
+    if (x==0)break;
+    BFS(x);
+    if (visited[y]){
+      cout << "Yes " << dist[y]-1 << endl;
+    }
+    else cout << "No" << endl;
+  }
+  return 0;
+}
