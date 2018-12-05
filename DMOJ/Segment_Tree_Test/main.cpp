@@ -2,15 +2,11 @@
 #include<cmath>
 using namespace std;
 typedef long long ll;
-const ll MAXN = 1e5+1;
-ll N, M, x, y, tree[MAXN];
+const ll MAXN = 1e5+5;
+ll N, M, x, y, tree[4*MAXN], arr[MAXN];
 
-void add(int k, int x){
-	k+=N;
-	tree[k] +=x;
-	for (k/=2; k>=1; k/=2){
-		tree[k] = tree[2*k]+tree[2*k+1];
-	}
+void update(ll pos, ll val){
+	
 }
 
 int main(){
@@ -18,7 +14,7 @@ int main(){
 	cin.sync_with_stdio(0); cin.tie(0);
 	cin >> N >> M;
 	for (int i = 1; i<=N; i++){
-		cin >> tree[i];
+		cin >> arr[i];
 	}
 	for (int i = 1; )
 	
