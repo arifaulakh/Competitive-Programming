@@ -1,12 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define scan(x) do{while((x=getchar())<'0'); for(x-='0'; '0'<=(_=getchar()); x=(x<<3)+(x<<1)+_-'0');}while(0)
 #define mp make_pair
 #define pb push_back
 #define MOD 1000000007
 #define MAXN 2002
 #define endl "\n"
-#define println printf("\n");
 #define readln(x) getline(cin, x);
 typedef long long ll;
 typedef long double ld;
@@ -44,8 +42,8 @@ int main(){
     cin >> N >> M >> B >> Q;
     for (int i = 1; i<=M; i++){
         cin >> x >> y >> z;
-        adj[x].push_back(pii(z,y));
-        adj[y].push_back(pii(z,x));
+        adj[x].pb(pii(z,y));
+        adj[y].pb(pii(z,x));
     }
     dijkstra(B);
     for (int i = 1; i<=N; i++){

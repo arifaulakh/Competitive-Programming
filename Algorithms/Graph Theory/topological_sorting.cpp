@@ -28,16 +28,3 @@ void topsort(int nodes) {
 	}
 	reverse(sorted.begin(), sorted.end());
 }
-int main(){
-	int nodes, edges, u, v;
-	cin >> nodes >> edges;
-	for (int i = 0; i < edges; i++){
-		cin >> u >> v;
-		adj[u].push_back(v);
-	}
-	topsort(nodes);
-	for (int i = 0; i < (int)sorted.size(); i++){
-		cout << sorted[i] << " ";
-	}
-	return 0;
-}

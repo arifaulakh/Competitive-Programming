@@ -3,7 +3,7 @@ using namespace std;
 #define mp make_pair
 #define pb push_back
 #define MOD 1000000007
-#define MAXN 1000006
+#define MAXN 10004
 #define endl "\n"
 #define readln(x) getline(cin, x);
 typedef long long ll;
@@ -14,25 +14,21 @@ typedef map<int, int> mii;
 typedef map<ll, ll> mll;
 ll fpow(ll x, ll n, ll mod){if (n==0) return 1%mod; ll u = fpow(x, n/2, mod); u = (u*u)%mod; if (n%2==1)u = (u*x)%mod;return u;}
 ll gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a % b); }
-ll N, K, arr[MAXN], num[MAXN], l = 1, cnt = 0;
-unordered_map<ll,ll> freq;
+
+int F, R, Q, a, b, c, A[6][MAXN], ps[6][MAXN];
 int main(){
     freopen("data.txt","r",stdin);
-    scanf("%lld%lld", &N, &K);
-    for (int i = 1; i<=N; i++){
-        scanf("%lld", &arr[i]);
-    }
-    for (int i = 1; i<=N; i++){
-        freq[arr[i]]++;
-        while((ll)freq.size()>=K&&l<=i){
-            freq[arr[l]]--;
-            if (freq[arr[l]]==0)freq.erase(arr[l]);
-            l++;
+    scanf("%d%d", &F, &R);
+    for (int i = 1; i<=F; i++){
+        for (int j = 1; j<=R; j++){
+            scanf("%d", &A[i][j]);
+            ps[i][j] = A[i][j]+ps[i][j-1];
         }
-        num[i] = i-l+1;
-        cnt+=num[i];
     }
-    ll total = (N*N+N)/2;
-    printf("%lld\n", total-cnt);
+    scanf("%d", &Q);
+    while(Q--){
+        scanf("%d%d%d", &a, &b, &c);
+        printf("%d\n", ps[c][b]-ps[c][a-1]);
+    }
     return 0;
 }
