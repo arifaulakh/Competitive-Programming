@@ -1,25 +1,25 @@
 #include <bits/stdc++.h>
 const int MAXN = 1005, INF = 1e9;
 using namespace std;
-typedef pair<int, int> pii;
+typedef pair<int, int> ii;
 int N, M;
 int dist[MAXN];
-vector<pii> adj[MAXN];
-priority_queue<pii, vector<pii>, greater<pii> > pq;
+vector<ii> adj[MAXN];
+priority_queue<ii, vector<ii>, greater<ii> > pq;
 void dijkstra(int src){
-  for (int i = 1; i <= N; i++)dist[i] = INF;
+  memset(dist, INF, sizeof dist);
   dist[src] = 0;
-  pq.push(pii(0, src));
+  pq.push(ii(0, src));
   while (!pq.empty()){
-    pii front = pq.top();
+    ii front = pq.top();
     pq.pop();
     int d = front.first, u = front.second;
     if (d > dist[u])continue;
     for (int j = 0; j < (int)adj[u].size(); j++){
-      pii v = adj[u][j];
+      ii v = adj[u][j];
       if (d + v.first < dist[v.second]){
         dist[v.second] = d + v.first;
-        pq.push(pii(dist[v.second], v.second));
+        pq.push(ii(dist[v.second], v.second));
       }
     }
   }
