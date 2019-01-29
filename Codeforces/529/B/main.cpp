@@ -3,7 +3,7 @@ using namespace std;
 #define mp make_pair
 #define pb push_back
 #define MOD 1000000007
-#define MAXN 101
+#define MAXN 100005
 #define endl "\n"
 #define readln(x) getline(cin, x);
 typedef long long ll;
@@ -15,18 +15,14 @@ typedef map<ll, ll> mll;
 ll fpow(ll x, ll n, ll mod){if (n==0) return 1%mod; ll u = fpow(x, n/2, mod); u = (u*u)%mod; if (n%2==1)u = (u*x)%mod;return u;}
 ll gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a % b); }
 
-int N, arr[MAXN], idxL = -1, idxR = -1, cnt = 0;
+int n, arr[MAXN];
 int main(){
-    //ifstream cin("hoofball.in");
-    //ofstream cout("hoofball.out");
     freopen("data.txt","r",stdin);
-    cin >> N;
-    for (int i = 1; i<=N; i++){
+    cin >> n;
+    for (int i = 1; i<=n; i++){
         cin >> arr[i];
     }
-    idxL = 1, idxR = N;
-    for (int i = 1; i<=N; i++){
-
-    }
+    sort(arr, arr+n+1);
+    cout << min((arr[n]-arr[2]), (arr[n-1]-arr[1])) << endl;
     return 0;
 }

@@ -1,8 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int MAXN = 101;
-int N, START[MAXN], END[MAXN], endtime = -1;
-
+const int MAXN = 2000010;
+int N, START[MAXN], END[MAXN], endtime = -1, visited[MAXN];
 void sort(){
 	for (int i = 1; i < N; i++){
         bool swapped = false;
@@ -25,23 +24,43 @@ void sort(){
     }
 }
 int main(){
-	// ifstream fin("cowqueue.in");
-	// ofstream fout("cowqueue.out");
-	freopen("data.txt","r",stdin);
+	ifstream cin("cowqueue.in");
+	ofstream cout("cowqueue.out");
+	//freopen("data.txt","r",stdin);
 	cin >> N;
 	for (int i = 1; i<=N; i++){
 		int s, e; cin >> s >> e;
-		START[i] = s,  END[i]=s+e;
+		START[i] = s,  END[i]=e;
 	}
 	sort();
-    for (int i = 1; i<N; i++){
-        if (START[i+1]<END[i]){
-            endtime = END[i]+(START[i+1]-START[i]);
+    for (int i = 1; i<=N; i++){
+        int S = START[i], E = END[i];
+        if (i==1){
+            for (int j = S; j<=S+E; j++){
+                visited[j]=1;
+            }
         }
         else{
-            endtime = END[i];
+            if (visited[S]==0){
+                for (int j = S; j<=S+E; j++){
+                    visited[j] = 1; 
+                }
+            }
+            else{
+                int LV = -1;
+                for (int j = 1; j<=MAXN; j++){
+                    if (visited[j]==1)LV = j;
+                }
+                for (int j = LV; j<=LV+E; j++){
+                    visited[j] = 1;
+                }
+            }
         }
     }
-	cout << endtime << endl;
+    int last = -1;
+    for (int i = 1; i<=MAXN; i++){
+        if (visited[i]==1)last = i;
+    }
+    cout << last << endl;
 	return 0;
 }
