@@ -51,6 +51,7 @@ int main(){
         int idx = 0;
         for (string u : options){
             idx++;
+            
             for (int i = 0; i<n; i+=3){
             }
         }
