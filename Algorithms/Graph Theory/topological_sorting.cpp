@@ -1,30 +1,28 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int MAXN = 100;
-vector<bool> visited(MAXN), done(MAXN);
+const int MAXN = 101;
+int visited[MAXN];
 vector<int> adj[MAXN], sorted;
 
 void dfs(int u){
-	if (visited[u]){
+	if (visited[u]==1){
 		cout << "Not a DAG";
-		return 0;
+		return;
 	}
-	if (done[u]) return;
-	visited[u] = true;
+	if (visited[u]==2) return;
+	visited[u] = 1;
 	for (auto j : adj[u]){
 		dfs(j);
 	}
-	visited[u] = false;
-	done[u] = false;
+	visited[u] = 2;
 	sorted.push_back(u);
 }
 
 void topsort(int nodes) {
-	fill(visited.begin(), visited.end(), false);
-	fill(done.begin(), done.end(), false);
+	memset(visited, 0, sizeof visited);
 	sorted.clear();
-	for (int i = 0; i < nodes; i++){
-		if (!done[i]) dfs(i);
+	for (int i = 1; i <= nodes; i++){
+		if (visited[i]!=2) dfs(i);
 	}
 	reverse(sorted.begin(), sorted.end());
 }
