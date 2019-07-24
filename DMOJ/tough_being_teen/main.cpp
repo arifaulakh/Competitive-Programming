@@ -1,33 +1,35 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int MAXN = 20;
-vector<int> adj[MAXN];
-int dist[MAXN], MIN = 8;
-vector<int> nodes, path;
-bool visited[MAXN];
-queue<int> q;
-
-void BFS(int x){
-	memset(visited,false,sizeof visited);
-	memset(dist,0,sizeof dist);
-	visited[x] = true;
-	dist[x] = 0;
-	q.push(x);
-	while (!q.empty())
-	{
-		int s = q.front();
-		nodes.push_back(s);
-		q.pop();
-		for (auto u : adj[s])
-		{
-			if (visited[u])
-				continue;
-			visited[u] = true;
-			dist[u] = dist[s] + 1;
-			q.push(u);
-		}
+vector<int> adj[MAXN], sorted;
+int dist[MAXN], MIN = 8, visited[MAXN];
+bool f = false;
+void dfs(int u){
+	if (visited[u]==1){
+		f = true;
+		return;
 	}
+	if (visited[u]==2) return;
+	visited[u] = 1;
+	for (auto j : adj[u]){
+		dfs(j);
+	}
+	visited[u] = 2;
+	sorted.push_back(u);
+	// for (auto u : sorted){
+	// 	cout << u << " ";
+	// }
+	// cout << endl;
 }
+void topsort(int nodes){
+	memset(visited, 0, sizeof visited);
+	sorted.clear();
+	for (int i = 1; i <= nodes; i++){
+		if (visited[i]!=2) dfs(i);
+	}
+	reverse(sorted.begin(), sorted.end());
+}
+
 void init(){
 	adj[1] = {4,7};
 	adj[2] = {1};
@@ -41,11 +43,17 @@ int main(){
 		if (a==0) break;
 		adj[a].push_back(b);
 	}
-	for (int i = 1; i<=7; i++){
-		BFS(i);
-		for (auto u : nodes) cout << u << " ";
+	topsort(7);
+	// for (auto u : sorted){
+	// 	cout << u << " ";
+	// }
+	// cout << endl;
+	if (f)cout << "Cannot complete these tasks. Going to bed." << endl;
+	else{
+		for (auto u : sorted){
+			cout << u << " ";
+		}
 		cout << endl;
-		nodes.clear();
 	}
 	return 0;
 }

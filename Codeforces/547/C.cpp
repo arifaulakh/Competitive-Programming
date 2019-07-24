@@ -2,10 +2,8 @@
 using namespace std;
 #define mp make_pair
 #define pb push_back
-#define first fi
-#define second se
 #define MOD 1000000007
-#define MAXN 1000006
+#define MAXN 200005
 #define endl "\n"
 #define readln(x) getline(cin, x);
 typedef long long ll;
@@ -17,7 +15,12 @@ typedef map<ll, ll> mll;
 ll fpow(ll x, ll n, ll mod){if (n==0) return 1%mod; ll u = fpow(x, n/2, mod); u = (u*u)%mod; if (n%2==1)u = (u*x)%mod;return u;}
 ll gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a % b); }
 
+int n, q[MAXN];
 int main(){
     freopen("data.txt","r",stdin);
+    cin >> n;
+    for (int i = 1; i<n; i++){
+        cin >> q[i];
+    }
     return 0;
 }
